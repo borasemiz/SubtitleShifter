@@ -10,7 +10,7 @@
 std::ostream& operator<<(std::ostream& out, const SubtitleItem& sub)
 {
 	out << sub.getSubNo() << std::endl;
-	out << TimeUtils::format(sub.getStartTime()) << "-->" << TimeUtils::format(sub.getEndTime()) << std::endl;
+	out << TimeUtils::format(sub.getStartTime()) << " --> " << TimeUtils::format(sub.getEndTime()) << std::endl;
 	out << sub.getText() << std::endl;
 	out << std::endl;
 	return out;
@@ -43,7 +43,9 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	ShiftSubtitleFile(argv[1], std::stoi(argv[2]));
+	for (int argIndex = 1; argIndex < argc - 1; argIndex++) {
+		ShiftSubtitleFile(argv[argIndex], std::stoi(argv[argc - 1]));
+	}
 
 	return 0;
 }
